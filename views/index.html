@@ -1,0 +1,409 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User Page</title>
+    <style>
+        body, html {
+          height: auto;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: Arial, sans-serif;
+        }
+    
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          width: 1000px;
+        }
+    
+        label {
+          margin-bottom: 5px;
+        }
+    
+        input[type="text"], input[type="email"], input[type="password"] {
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          width: 90%;
+        }
+    
+        input[type="submit"], button {
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          background-color: #8caf4c;
+          color: white;
+          width: 90%;
+        }
+    
+        input[type="submit"]:hover, button:hover {
+          background-color: #88a045;
+        }
+    
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+        }
+    
+        table, th, td {
+          border: 1px solid #ddd;
+        }
+    
+        th, td {
+          padding: 8px;
+          text-align: left;
+        }
+    
+        th {
+          background-color: #f2f2f2;
+        }
+      </style>
+</head>
+<body>
+    <form id="createUserForm">
+        <h1>Create User</h1>
+    
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+    
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+    
+        <label for="mobileNo">Mobile Number:</label>
+        <input type="text" id="mobileNo" name="mobileNo" pattern="\d{10}" required title="Enter 10 digit mobile number">
+    
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" required>
+    
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+    
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+    
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+    
+        <label for="loginId">Login ID:</label>
+        <input type="text" id="loginId" name="loginId" required>
+    
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    
+        <input type="submit" value="Save">
+        <button type="button" id="showData">Show Data</button>
+      </form>
+    
+      <div class="user-data"></div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script>
+        $(document).ready(function(){
+          $("createUserForm").submit(function(event){
+            event.preventDefault();
+
+            const formDta = {
+              firstName: $('#firstName').val(),
+          lastName: $('#lastName').val(),
+          mobileNo: $('#mobileNo').val(),
+          email: $('#email').val(),
+          address: {
+            street: $('#street').val(),
+            city: $('#city').val(),
+            state: $('#state').val(),
+            country: $('#country').val()
+          },
+          loginId: $('#loginId').val(),
+          password: $('#password').val()
+            };
+
+            $.ajax({
+              type: 'POST',
+              url: 'http://localhost:4100/create',
+              contentType: 'application/json',
+              data: JSON.stringify(formData),
+              success: function (data) {
+            alert('User created successfully!');
+            $('#createUserForm')[0].reset();
+          },
+          error: function (error) {
+            alert('Error creating user: ');
+          }
+
+
+            })
+
+
+
+          })
+        })
+      </script>
+
+    
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create User</title>
+  <style>
+    body, html {
+      height: auto;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 1000px;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 90%;
+    }
+
+    input[type="submit"], button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      width: 90%;
+    }
+
+    input[type="submit"]:hover, button:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <form id="createUserForm">
+    <h1>Create New User</h1>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+
+    <label for="mobileNo">Mobile Number:</label>
+    <input type="text" id="mobileNo" name="mobileNo" pattern="\d{10}" required title="Enter 10 digit mobile number">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="street">Street:</label>
+    <input type="text" id="street" name="street" required>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed">
+
+    <label for="loginId">Login ID:</label>
+    <input type="text" id="loginId" name="loginId" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <input type="submit" value="Save">
+    <button type="button" id="showData">Show Data</button>
+  </form>
+
+  <div class="user-data"></div>
+</body>
+</html>
+
+  <!-- <a href="https://node-task-m7sx.onrender.com" target="_blank">Go to Create User Form</a> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+  <!-- <h1>Live Users</h1>
+  <ul id="userList"></ul>
+
+  <div id="userPopup" style="display:none; border: 1px solid black; padding: 10px; position: absolute; background: white;">
+    <span id="closePopup" style="cursor:pointer;">&times;</span>
+    <div id="userDetails"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script> -->
+
+<!-- <a href="https://node-task-m7sx.onrender.com" target="_blank">Go to Create User Form</a> -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#createUserForm').submit(function (event) {
+        event.preventDefault();
+
+        const formData = {
+          firstName: $('#firstName').val(),
+          lastName: $('#lastName').val(),
+          mobileNo: $('#mobileNo').val(),
+          email: $('#email').val(),
+          address: {
+            street: $('#street').val(),
+            city: $('#city').val(),
+            state: $('#state').val(),
+            country: $('#country').val()
+          },
+          loginId: $('#loginId').val(),
+          password: $('#password').val()
+        };
+
+        $.ajax({
+          type: 'POST',
+         // url: 'http://localhost:4100/create',
+          url: 'https://node-task-01-1.onrender.com/server/create',
+          contentType: 'application/json',
+          data: JSON.stringify(formData),
+          success: function (data) {
+            alert('User created successfully!');
+            $('#createUserForm')[0].reset();
+          },
+          error: function (error) {
+            alert('Error creating user: ');
+          }
+        });
+      });
+
+      // $('#showData').click(function () {
+      //   window.open('https://node-task-m7sx.onrender.com/server/display_data', '_blank');
+      // });
+      $('#showData').on('click', function() {
+        $.ajax({
+          // url: 'http://localhost:4100/fetch_data',
+          url: 'https://node-task-01-1.onrender.com/server/fetch_data',
+          method: 'GET',
+          success: function(response) {
+            let table = '<h2>User Data</h2><table><tr><th>First Name</th><th>Last Name</th><th>Mobile No</th><th>Email</th><th>Street</th><th>City</th><th>State</th><th>Country</th><th>Login ID</th></tr>';
+            response.forEach(user => {
+              table += `<tr>
+                          <td>${user.firstName}</td>
+                          <td>${user.lastName}</td>
+                          <td>${user.mobileNo}</td>
+                          <td>${user.email}</td>
+                          <td>${user.address.street}</td>
+                          <td>${user.address.city}</td>
+                          <td>${user.address.state}</td>
+                          <td>${user.address.country}</td>
+                          <td>${user.loginId}</td>
+                        </tr>`;
+            });
+            table += '</table>';
+            $('.user-data').html(table).show();
+            $('#createUserForm').hide();
+          },
+          error: function(error) {
+            alert('Error fetching users');
+          }
+        });
+        
+
+      $('#showData').click(function () {
+        window.open('https://node-task-01-1.onrender.com/server/fetch_data', '_blank');
+      });
+    });
+
+  
+    // const socket = io();
+
+    //   socket.on('connect', () => {
+    //     const userData = {
+    //       email: 'user@example.com', // Replace with actual user data
+    //       name: 'User Name'
+    //     };
+    //     socket.emit('joinLiveUserRoom', userData);
+    //   });
+
+    //   socket.on('updateUserList', (users) => {
+    //     const userList = $('#userList');
+    //     userList.empty();
+    //     users.forEach(user => {
+    //       userList.append(`<li data-email="${user.email}" data-socket-id="${user.socketId}">${user.email} (${user.socketId})</li>`);
+    //     });
+    //   });
+
+    //   $('#userList').on('click', 'li', function () {
+    //     const email = $(this).data('email');
+    //     const socketId = $(this).data('socket-id');
+
+    //     $.ajax({
+    //       url: '/server/getUserInfo',
+    //       method: 'GET',
+    //       data: { email, socketId },
+    //       success: (data) => {
+    //         $('#userDetails').html(`<p>Email: ${data.email}</p><p>Name: ${data.name}</p><p>Socket ID: ${data.socketId}</p>`);
+    //         $('#userPopup').show();
+    //       }
+    //     });
+    //   });
+
+    //   $('#closePopup').on('click', () => {
+    //     $('#userPopup').hide();
+    //   });
+     });
+  </script>
+</body>
+
+</html>
+
